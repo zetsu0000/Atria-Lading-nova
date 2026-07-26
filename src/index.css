@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Stack Sans Text — https://fonts.google.com/specimen/Stack+Sans+Text (variable, 200–700) */
+  --font-sans:
+    'Stack Sans Text', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+html {
+  background-color: #000;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* The oversized wordmark is intentionally wider than small viewports' text flow;
+     never let it produce a horizontal scrollbar. */
+  overflow-x: hidden;
+}
