@@ -46,23 +46,27 @@ in Stack Sans Text at `-0.035em` tracking advances ≈3.93× its font size, so
 
 ## Background image
 
-The hero expects a photo at **`public/hero-bg.jpg`**. That file is not in the
+The hero expects a photo at **`public/hero-bg.webp`**. That file is not in the
 repo — drop yours there and it renders immediately (no import or config
 change; Vite serves `public/` from the site root).
 
 It sits on a black base, so if the file is missing or still loading the hero
 degrades to the plain black version rather than a broken frame.
 
-Because the reference photo is very light, white type needs the base pulled
-down. `Hero.tsx` layers two scrims over the image:
+Following the reference, the photo runs at full strength — no dark wash. Two
+low-opacity gradients only take the edge off the brightest areas so white type
+holds:
 
-- a flat `bg-black/45` tint, so the photo stays visible across the whole frame
-- a bottom-up `from-black via-black/55 to-transparent` gradient, adding the
-  extra contrast the wordmark and the copy column need
+- `from-black/40 via-transparent to-black/10`, bottom-up, behind the wordmark
+- `to-black/25`, left-to-right, behind the copy column
 
-Lower those two values to let more of the photo through; raise them if you swap
-in a brighter image. `bg-[position:60%_center]` sets the crop focus — it keeps
-the subject in frame when the viewport gets narrow.
+The type carries a soft `text-shadow` for the same reason. Between the two, the
+copy stays readable without the photo reading as dimmed. `bg-[position:58%_center]`
+sets the crop focus, keeping the subject in frame as the viewport narrows.
+
+> **Weight.** An 8K source is far larger than a hero needs. Consider exporting a
+> ~2560px variant for the base URL and reserving the full-size file for a
+> `image-set()` / `<picture>` high-DPI branch.
 
 ## Icons
 

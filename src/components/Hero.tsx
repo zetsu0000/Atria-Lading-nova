@@ -16,12 +16,12 @@ export default function Hero() {
       {/* Background photo. Kept on a black base so a missing/slow image degrades
           to the plain black hero rather than a broken frame. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-[position:60%_center]" />
-        {/* Scrim — the photo is very light, so white type needs the base pulled
-            down. Flat tint keeps the image readable everywhere; the bottom
-            gradient adds the extra contrast the wordmark and copy need. */}
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/55 to-transparent" />
+        <div className="absolute inset-0 bg-[url('/hero-bg.webp')] bg-cover bg-[position:58%_center]" />
+        {/* Minimal scrim — the reference shows the photo at full strength, so
+            this only takes the edge off the brightest areas behind white type
+            rather than washing the whole frame dark. */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-black/10" />
+        <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-black/25" />
       </div>
 
       <div
@@ -32,7 +32,7 @@ export default function Hero() {
         ].join(' ')}
       >
         {/* Tagline — upper right on desktop, first line on mobile */}
-        <p className="order-1 text-[clamp(1.5rem,2.4vw,2.15rem)] leading-tight tracking-[-0.01em] text-white lg:col-start-2 lg:row-start-1 lg:self-start lg:pt-[26vh]">
+        <p className="order-1 text-[clamp(1.5rem,2.4vw,2.15rem)] leading-tight tracking-[-0.01em] text-white [text-shadow:0_2px_24px_rgb(0_0_0/0.35)] lg:col-start-2 lg:row-start-1 lg:self-start lg:pt-[26vh]">
           Enter the Future.
         </p>
 
@@ -55,14 +55,14 @@ export default function Hero() {
             its column edge-to-edge: "Neutrals" in Stack Sans Text at -0.035em
             tracking advances ~3.93x its font size, so 25cqw ≈ a full column. */}
         <div className="@container order-2 mt-auto pt-12 sm:pt-16 lg:col-start-1 lg:row-start-2 lg:order-none lg:mt-0 lg:pt-0 lg:self-end">
-          <h1 className="-ml-[0.05em] text-[25cqw] leading-[0.82] font-normal tracking-[-0.035em] text-white">
+          <h1 className="-ml-[0.05em] text-[25cqw] leading-[0.82] font-normal tracking-[-0.035em] text-white [text-shadow:0_4px_40px_rgb(0_0_0/0.30)]">
             Neutrals
           </h1>
         </div>
 
         {/* Description + primary CTA — bottom right, baseline-aligned with the wordmark */}
         <div className="order-3 mt-8 flex flex-col items-start lg:col-start-2 lg:row-start-2 lg:order-none lg:mt-0 lg:self-end lg:pb-1">
-          <p className="max-w-[38ch] text-[15px] leading-[1.5] text-white/90 sm:text-[17px] lg:max-w-none">
+          <p className="max-w-[38ch] text-[15px] leading-[1.5] text-white [text-shadow:0_2px_20px_rgb(0_0_0/0.45)] sm:text-[17px] lg:max-w-none">
             Lumenet blends AI, system architecture, and design to build intuitive, perception-driven
             digital environments—redefining how humans interact with technology.
           </p>

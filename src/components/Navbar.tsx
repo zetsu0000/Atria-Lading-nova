@@ -16,7 +16,7 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6 lg:px-9 lg:pt-9">
       <nav
         aria-label="Main"
-        className="mx-auto max-w-[1600px] rounded-[2rem] bg-[#111111]/90 backdrop-blur-xl lg:rounded-full"
+        className="mx-auto max-w-[1600px] rounded-[2rem] bg-white/10 shadow-[inset_0_1px_0_rgb(255_255_255/0.25)] ring-1 ring-white/20 backdrop-blur-2xl lg:rounded-full"
       >
         <div className="flex h-16 items-center justify-between gap-4 pr-1.5 pl-5 sm:pl-7 lg:h-[76px] lg:grid lg:grid-cols-[1fr_auto_1fr] lg:pl-9">
           {/* Desktop links (left) */}
