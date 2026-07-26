@@ -5,9 +5,3 @@ dist-ssr
 .DS_Store
 .vite
 *.log
-
-# Local-only stand-in for the hero photo: a synthetic gradient generated to
-# preview the layout, NOT the real design asset.
-# >>> Once public/hero-bg.webp holds the real image, DELETE the line below,
-# >>> otherwise the actual hero photo will silently stay out of the repo.
-public/hero-bg.webp
