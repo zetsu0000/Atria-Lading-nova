@@ -11,8 +11,19 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-svh flex-col bg-black px-5 pt-28 pb-8 sm:px-8 sm:pt-32 lg:px-9 lg:pb-9"
+      className="relative isolate flex min-h-svh flex-col overflow-hidden bg-black px-5 pt-28 pb-8 sm:px-8 sm:pt-32 lg:px-9 lg:pb-9"
     >
+      {/* Background photo. Kept on a black base so a missing/slow image degrades
+          to the plain black hero rather than a broken frame. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-[position:60%_center]" />
+        {/* Scrim — the photo is very light, so white type needs the base pulled
+            down. Flat tint keeps the image readable everywhere; the bottom
+            gradient adds the extra contrast the wordmark and copy need. */}
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-0 bg-linear-to-t from-black via-black/55 to-transparent" />
+      </div>
+
       <div
         className={[
           'mx-auto flex w-full max-w-[1600px] flex-1 flex-col',

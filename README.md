@@ -44,6 +44,26 @@ overflowing into the copy. The `25` comes from measuring the string: "Neutrals"
 in Stack Sans Text at `-0.035em` tracking advances ≈3.93× its font size, so
 `1 / 3.93 ≈ 0.254`. Change the wordmark text and that number needs re-measuring.
 
+## Background image
+
+The hero expects a photo at **`public/hero-bg.jpg`**. That file is not in the
+repo — drop yours there and it renders immediately (no import or config
+change; Vite serves `public/` from the site root).
+
+It sits on a black base, so if the file is missing or still loading the hero
+degrades to the plain black version rather than a broken frame.
+
+Because the reference photo is very light, white type needs the base pulled
+down. `Hero.tsx` layers two scrims over the image:
+
+- a flat `bg-black/45` tint, so the photo stays visible across the whole frame
+- a bottom-up `from-black via-black/55 to-transparent` gradient, adding the
+  extra contrast the wordmark and the copy column need
+
+Lower those two values to let more of the photo through; raise them if you swap
+in a brighter image. `bg-[position:60%_center]` sets the crop focus — it keeps
+the subject in frame when the viewport gets narrow.
+
 ## Icons
 
 The second reference image was not available, so the three bottom icons are
