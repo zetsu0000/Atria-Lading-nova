@@ -5,3 +5,6 @@ dist-ssr
 .DS_Store
 .vite
 *.log
+
+# Per-machine Claude Code settings; the shared ones live in .claude/settings.json
+.claude/settings.local.json

@@ -4,6 +4,26 @@
   /* Stack Sans Text — https://fonts.google.com/specimen/Stack+Sans+Text (variable, 200–700) */
   --font-sans:
     'Stack Sans Text', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Instrument Serif, italic only — editorial titles in the solutions section
+     and short accent phrases. Never body copy. */
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+
+  /* ── Atria Cobalt v3 ────────────────────────────────────────────────────
+     Scoped to the solutions section; the hero, the blue gradient sections
+     and the footer keep their own colours. Roles, not decoration:
+
+       ink        dominant background, and the card fill one step up
+       mineral    text and hairline borders
+       cobalt     the single source of depth and light
+       vermilion  editorial detail, sparingly
+       acid       signal only — live state, activation, focus. Never a field.  */
+  --color-ink: #07090d;
+  --color-ink-raised: #0b0e14;
+  --color-mineral: #e9ecf2;
+  --color-cobalt: #2f6bff;
+  --color-vermilion: #e8503a;
+  --color-acid: #c8f531;
 }
 
 html {

@@ -1,11 +1,5 @@
-import { Instagram, Linkedin, Twitter } from 'lucide-react'
+import AtriaFilm from './AtriaFilm'
 import CtaButton from './CtaButton'
-
-const SOCIAL_LINKS = [
-  { label: 'Lumenet on X', href: '#x', Icon: Twitter },
-  { label: 'Lumenet on LinkedIn', href: '#linkedin', Icon: Linkedin },
-  { label: 'Lumenet on Instagram', href: '#instagram', Icon: Instagram },
-]
 
 export default function Hero() {
   return (
@@ -13,15 +7,25 @@ export default function Hero() {
       id="top"
       className="relative isolate flex min-h-svh flex-col overflow-hidden bg-black px-5 pt-28 pb-8 sm:px-8 sm:pt-32 lg:px-9 lg:pb-9"
     >
-      {/* Background photo. Kept on a black base so a missing/slow image degrades
-          to the plain black hero rather than a broken frame. */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[url('/hero-bg.webp')] bg-cover bg-[position:58%_center]" />
-        {/* Minimal scrim — the reference shows the photo at full strength, so
-            this only takes the edge off the brightest areas behind white type
-            rather than washing the whole frame dark. */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-black/10" />
-        <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-black/25" />
+      {/* Background film — an 8s glass-panel reveal that pushes into a macro
+          shot, which is what gives the hero its depth. Kept on a black base so
+          a slow or blocked video degrades to the plain black hero. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black">
+        <AtriaFilm className="size-full object-cover object-center" />
+
+        {/* Scrims are pinned to where type actually sits and fade out well
+            before the middle of the frame, so the film itself runs at full
+            strength — the reveal and the macro eye stay bright. Legibility on
+            the copy comes from these plus the text-shadows below, not from
+            dimming the whole video. */}
+
+        {/* Under the wordmark / copy / CTA. Reaches higher on mobile, where the
+            stacked layout puts type through most of the lower half. */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 via-22% to-transparent to-58% lg:via-16% lg:to-45%" />
+        {/* Behind the nav pill only. */}
+        <div className="absolute inset-x-0 top-0 h-44 bg-linear-to-b from-black/45 to-transparent" />
+        {/* Behind the right-hand copy column. */}
+        <div className="absolute inset-0 bg-linear-to-l from-black/25 to-transparent to-38%" />
       </div>
 
       <div
@@ -32,39 +36,29 @@ export default function Hero() {
         ].join(' ')}
       >
         {/* Tagline — upper right on desktop, first line on mobile */}
-        <p className="order-1 text-[clamp(1.5rem,2.4vw,2.15rem)] leading-tight tracking-[-0.01em] text-white [text-shadow:0_2px_24px_rgb(0_0_0/0.35)] lg:col-start-2 lg:row-start-1 lg:self-start lg:pt-[26vh]">
-          Enter the Future.
+        <p className="order-1 text-[clamp(1.2rem,1.92vw,1.72rem)] leading-tight tracking-[-0.01em] text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.55)] lg:col-start-2 lg:row-start-1 lg:self-start lg:pt-[26vh]">
+          Entre no Futuro.
         </p>
 
-        {/* Social icons — bottom left, sitting just above the wordmark */}
-        <ul className="order-4 mt-10 flex items-center gap-5 lg:col-start-1 lg:row-start-1 lg:order-none lg:mt-0 lg:mb-10 lg:self-end">
-          {SOCIAL_LINKS.map(({ label, href, Icon }) => (
-            <li key={label}>
-              <a
-                href={href}
-                aria-label={label}
-                className="grid size-11 place-items-center rounded-full text-white/60 transition-colors duration-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 lg:size-auto"
-              >
-                <Icon className="size-[22px]" strokeWidth={1.6} aria-hidden="true" />
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Oversized wordmark. Sized in container-query units so it always fills
-            its column edge-to-edge: "Neutrals" in Stack Sans Text at -0.035em
-            tracking advances ~3.93x its font size, so 25cqw ≈ a full column. */}
+        {/* Oversized wordmark. Sized in container-query units so it scales with
+            its column rather than the viewport: "Atria" in Stack Sans Text at
+            weight 400 and -0.035em tracking advances ~2.14x its font size, so
+            44.5cqw filled the column edge-to-edge — 35.6cqw is that at -20%,
+            leaving ~20% of the column as trailing space. The negative margin
+            cancels the leading "A" side bearing (0.038em) so the letter still
+            sits flush with the column edge. */}
         <div className="@container order-2 mt-auto pt-12 sm:pt-16 lg:col-start-1 lg:row-start-2 lg:order-none lg:mt-0 lg:pt-0 lg:self-end">
-          <h1 className="-ml-[0.05em] text-[25cqw] leading-[0.82] font-normal tracking-[-0.035em] text-white [text-shadow:0_4px_40px_rgb(0_0_0/0.30)]">
-            Neutrals
+          <h1 className="-ml-[0.04em] text-[35.6cqw] leading-[0.82] font-normal tracking-[-0.035em] text-white [text-shadow:0_4px_40px_rgb(0_0_0/0.30)]">
+            Atria
           </h1>
         </div>
 
         {/* Description + primary CTA — bottom right, baseline-aligned with the wordmark */}
         <div className="order-3 mt-8 flex flex-col items-start lg:col-start-2 lg:row-start-2 lg:order-none lg:mt-0 lg:self-end lg:pb-1">
-          <p className="max-w-[38ch] text-[15px] leading-[1.5] text-white [text-shadow:0_2px_20px_rgb(0_0_0/0.45)] sm:text-[17px] lg:max-w-none">
-            Lumenet blends AI, system architecture, and design to build intuitive, perception-driven
-            digital environments—redefining how humans interact with technology.
+          <p className="max-w-[38ch] text-[12px] leading-[1.5] text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.6)] sm:text-[13.6px] lg:max-w-none">
+            A Atria une IA, arquitetura de sistemas e design para construir ambientes digitais
+            intuitivos e orientados pela percepção—redefinindo como as pessoas interagem com a
+            tecnologia.
           </p>
           <CtaButton className="mt-7 lg:mt-9" />
         </div>
