@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const PRIMARY_LINKS = [
   { label: 'Início', href: '#top' },
-  { label: 'Soluções', href: '#solucoes' },
+  { label: 'Abordagem', href: '#solucoes' },
   { label: 'Sobre', href: '#sobre' },
   { label: 'Contato', href: '#contato' },
 ]
@@ -274,7 +274,7 @@ export default function Footer() {
             contato@atria.com
           </a>
           <p className={`mt-3 text-[#0a0a0a]/45 ${MICRO}`}>
-            Website by Atria
+            Direção digital — Atria
             <br />© {new Date().getFullYear()} Atria — Brasil
           </p>
         </address>

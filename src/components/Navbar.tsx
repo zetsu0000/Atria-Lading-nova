@@ -3,7 +3,7 @@ import { Menu, X } from 'lucide-react'
 import CtaButton from './CtaButton'
 
 const NAV_LINKS = [
-  { label: 'Soluções', href: '#solucoes' },
+  { label: 'Abordagem', href: '#solucoes' },
   { label: 'Sobre', href: '#sobre' },
   { label: 'Contato', href: '#contato' },
 ]

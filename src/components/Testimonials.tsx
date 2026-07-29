@@ -19,39 +19,28 @@ const COBALT = '#2f6bff'
 const FIELD =
   'radial-gradient(120% 140% at 0% 0%, #2c85e5 0%, #62aaea 30%, #97cbf4 62%, #b7defb 100%)'
 
-/**
- * ⚠️ CONTEÚDO PLACEHOLDER — NÃO PUBLICAR COMO ESTÁ.
- *
- * As falas, os nomes, as funções e as clínicas abaixo são inventados. O guia de
- * marca proíbe depoimento simulado e clínica ou médico inventados apresentados
- * como prova (§21.3 e §25 de `docs/seo-posicionamento-marca-atria.md`). Antes do
- * lançamento, esta lista precisa ser substituída por depoimentos reais com
- * autorização registrada — ou a seção precisa sair do ar.
- *
- * Ordenados para responder à seção de abordagem na mesma sequência: direção →
- * clareza → encontrabilidade. Cada voz fecha uma das três afirmações acima.
- */
+/** Princípios editoriais da Atria: direção → clareza → encontrabilidade. */
 const VOICES = [
   {
     quote:
-      'Minha presença deixou de ser um conjunto de canais soltos e passou a ter uma direção.',
-    name: 'Helena Braga',
-    role: 'Dermatologista',
-    company: 'Clínica Vértice',
+      'Uma presença forte começa quando as decisões deixam de ser isoladas.',
+    name: 'Direção',
+    role: 'O posicionamento orienta linguagem, conteúdo e encontrabilidade.',
+    company: 'Posicionamento',
   },
   {
     quote:
-      'Meus conteúdos passaram a explicar o meu critério, em vez de repetir o que todo mundo publica.',
-    name: 'Camila Ferraz',
-    role: 'Dermatologista',
-    company: 'Instituto Marée',
+      'Conteúdo ganha função quando torna o seu critério compreensível.',
+    name: 'Clareza',
+    role: 'A mensagem explica o que torna a sua atuação reconhecível.',
+    company: 'Linguagem',
   },
   {
     quote:
-      'As pessoas passaram a me encontrar pelos temas que realmente definem a minha atuação.',
-    name: 'Rafael Nakamura',
-    role: 'Dermatologista e sócio',
-    company: 'Núcleo Derma',
+      'Ser encontrado importa quando a busca aproxima você dos temas que definem a sua atuação.',
+    name: 'Encontrabilidade',
+    role: 'A presença atrai interesse coerente com o seu posicionamento.',
+    company: 'Busca orgânica',
   },
 ]
 
@@ -452,7 +441,7 @@ export default function Testimonials() {
                 }}
                 className="block text-[clamp(1.5rem,2.5vw,2.15rem)] leading-[1.05] tracking-[0.01em] text-[#08223d] uppercase"
               >
-                Evidência
+                Critério
               </span>
             </span>
             <span className="block overflow-hidden pb-[0.08em]">
@@ -462,7 +451,7 @@ export default function Testimonials() {
                 }}
                 className="block font-serif text-[clamp(2.4rem,4.4vw,4rem)] leading-[1.02] font-normal text-[#08223d] italic"
               >
-                antes de promessa
+                antes de produção
               </span>
             </span>
           </h2>
