@@ -208,8 +208,8 @@ export default function Solutions() {
           {/* ── Row 3 ── copy left, card right again, but narrower and wider in
               aspect so it never reads as a repeat of row 1. ── */}
           <Editorial
-            title="Visibilidade sem aderência é ruído."
-            description="Conteúdo e busca aproximam sua presença dos temas que sustentam o seu posicionamento — não de qualquer tráfego."
+            title="Ser encontrado pelo que diferencia você."
+            description="Organizamos conteúdo e busca para dar visibilidade aos temas que melhor representam a sua atuação."
             delay={0}
             className="mt-24 max-w-[560px] sm:mt-32 lg:col-span-5 lg:col-start-1 lg:row-start-3 lg:mt-0 lg:justify-self-start"
           />

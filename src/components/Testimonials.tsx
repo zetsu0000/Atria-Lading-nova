@@ -23,24 +23,24 @@ const FIELD =
 const VOICES = [
   {
     quote:
-      'Quando cada canal comunica uma versão diferente de você, nenhum deles sustenta sua presença por inteiro.',
-    name: 'Coerência',
-    role: 'Uma direção para todos os pontos de contato.',
-    company: 'Presença digital',
-  },
-  {
-    quote:
-      'Clareza não reduz a complexidade do seu trabalho. Torna visível o critério que o diferencia.',
-    name: 'Reconhecimento',
-    role: 'Uma linguagem que torna diferenças compreensíveis.',
+      'Uma presença forte começa quando as decisões deixam de ser isoladas.',
+    name: 'Direção',
+    role: 'O posicionamento orienta linguagem, conteúdo e encontrabilidade.',
     company: 'Posicionamento',
   },
   {
     quote:
-      'Busca só tem valor quando aproxima sua presença dos temas que realmente definem a sua atuação.',
+      'Conteúdo ganha função quando torna o seu critério compreensível.',
+    name: 'Clareza',
+    role: 'A mensagem explica o que torna a sua atuação reconhecível.',
+    company: 'Linguagem',
+  },
+  {
+    quote:
+      'Ser encontrado importa quando a busca aproxima você dos temas que definem a sua atuação.',
     name: 'Encontrabilidade',
-    role: 'Conteúdo e busca conectados ao seu posicionamento.',
-    company: 'Relevância',
+    role: 'A presença atrai interesse coerente com o seu posicionamento.',
+    company: 'Busca orgânica',
   },
 ]
 
@@ -441,7 +441,7 @@ export default function Testimonials() {
                 }}
                 className="block text-[clamp(1.5rem,2.5vw,2.15rem)] leading-[1.05] tracking-[0.01em] text-[#08223d] uppercase"
               >
-                Posicionamento
+                Critério
               </span>
             </span>
             <span className="block overflow-hidden pb-[0.08em]">
@@ -451,7 +451,7 @@ export default function Testimonials() {
                 }}
                 className="block font-serif text-[clamp(2.4rem,4.4vw,4rem)] leading-[1.02] font-normal text-[#08223d] italic"
               >
-                não é aparência
+                antes de produção
               </span>
             </span>
           </h2>
