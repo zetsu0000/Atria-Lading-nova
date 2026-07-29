@@ -13,9 +13,8 @@ export default function App() {
       {/* Solutions runs on its own dark, scroll-lit field. */}
       <Solutions />
 
-      {/* The page's one bright field, between two dark ones. The section owns
-          it now — the gradient has grain, drifting light and a seam at each
-          end, and all of that has to live inside the element that clips it. */}
+      {/* The bright field carries its light into the warm paper footer. The
+          section owns the animated wash that makes that handoff continuous. */}
       <Testimonials />
 
       <Footer />

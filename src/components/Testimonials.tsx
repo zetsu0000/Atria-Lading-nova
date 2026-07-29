@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
-import { GRAIN, SEAM_GLOW } from '../lib/grain'
+import { GRAIN, SEAM_BAND, SEAM_GLOW, SEAM_PLACEMENT } from '../lib/grain'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
@@ -10,10 +10,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 const INK = '#08223d'
 const COBALT = '#2f6bff'
 
-/** Both seam bands. Kept equal on each side of a boundary so the section above
- *  or below can mirror the glow across it at exactly the same rate. */
-const SEAM_TOP = 'clamp(120px,15vh,210px)'
-const SEAM_BOTTOM = 'clamp(180px,24vh,320px)'
 
 /**
  * The field itself, unchanged: a radial anchored at the top-left corner,
@@ -128,22 +124,26 @@ export default function Testimonials() {
         if (footerCurtainRef.current) {
           if (reduce) {
             gsap.set(footerCurtainRef.current, {
-              scaleX: 1.06,
+              scaleX: 1.08,
+              scaleY: 1,
               yPercent: 0,
+              rotation: 0,
             })
           } else {
             gsap.fromTo(
               footerCurtainRef.current,
-              { scaleX: 0.68, yPercent: 28 },
+              { scaleX: 0.64, scaleY: 0.58, yPercent: 30, rotation: -1.4 },
               {
-                scaleX: 1.06,
+                scaleX: 1.08,
+                scaleY: 1,
                 yPercent: 0,
+                rotation: 0,
                 ease: 'none',
                 scrollTrigger: {
                   trigger: rootRef.current,
-                  start: 'bottom 140%',
+                  start: 'bottom 148%',
                   end: 'bottom bottom',
-                  scrub: 0.8,
+                  scrub: 0.9,
                   invalidateOnRefresh: true,
                 },
               },
@@ -151,17 +151,33 @@ export default function Testimonials() {
           }
         }
 
-        // Header. The two title lines rise out of their own overflow.
-        const headTl = gsap.timeline({
-          scrollTrigger: { trigger: rootRef.current, start: 'top 78%', once: true },
-        })
+        // Header. The two title lines rise out of their own overflow — which
+        // means that until the trigger fires they are parked outside it, i.e.
+        // invisible. Same shape of failure the footer's entrance had: a
+        // ScrollTrigger.refresh() re-renders the start state of a `from` bound
+        // to a spent `once` trigger and the title never comes back.
+        //
+        // So the start state is set outside the tween, and only when the
+        // section is still below the line that would have fired it.
+        const ENTER_AT = 0.78
+        const lines = headLineRefs.current.filter(Boolean)
+        const head = rootRef.current
 
-        headTl.from(headLineRefs.current.filter(Boolean), {
-          yPercent: 108,
-          duration: reduce ? 0 : 1,
-          ease: 'power3.out',
-          stagger: reduce ? 0 : 0.09,
-        })
+        if (head && lines.length && head.getBoundingClientRect().top > window.innerHeight * ENTER_AT) {
+          gsap.set(lines, { yPercent: 108 })
+          gsap.to(lines, {
+            yPercent: 0,
+            duration: reduce ? 0 : 1,
+            ease: 'power3.out',
+            stagger: reduce ? 0 : 0.09,
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: rootRef.current,
+              start: `top ${ENTER_AT * 100}%`,
+              once: true,
+            },
+          })
+        }
 
         quoteRefs.current.forEach((quote, index) => {
           if (!quote) return
@@ -360,7 +376,7 @@ export default function Testimonials() {
         <div
           className="absolute inset-x-0 top-0"
           style={{
-            height: SEAM_TOP,
+            height: SEAM_BAND.top,
             background:
               'linear-gradient(to bottom, #07090d 0%, rgb(7 9 13 / 0.95) 9%, rgb(7 9 13 / 0.82) 22%, rgb(7 9 13 / 0.6) 40%, rgb(7 9 13 / 0.36) 58%, rgb(7 9 13 / 0.17) 74%, rgb(7 9 13 / 0.05) 89%, transparent 100%)',
           }}
@@ -368,18 +384,18 @@ export default function Testimonials() {
         <div
           className="absolute inset-x-0 bottom-0"
           style={{
-            height: SEAM_BOTTOM,
+            height: SEAM_BAND.bottom,
             background:
-              'linear-gradient(to bottom, transparent 0%, rgb(6 26 48 / 0.07) 14%, rgb(6 26 48 / 0.2) 30%, rgb(6 26 48 / 0.4) 48%, rgb(6 26 48 / 0.62) 66%, rgb(6 26 48 / 0.83) 84%, #061a30 100%)',
+              'linear-gradient(to bottom, transparent 0%, rgb(242 238 228 / 0.06) 14%, rgb(242 238 228 / 0.18) 30%, rgb(242 238 228 / 0.38) 48%, rgb(242 238 228 / 0.62) 66%, rgb(242 238 228 / 0.84) 84%, #f2eee4 100%)',
           }}
         />
 
         <div
           ref={footerCurtainRef}
-          className="absolute -bottom-px left-1/2 h-[clamp(150px,20vh,260px)] w-[150vw] -translate-x-1/2 rounded-[50%_50%_0_0/100%_100%_0_0] opacity-80 will-change-transform"
+          className="absolute -bottom-px left-1/2 h-[clamp(210px,29vh,390px)] w-[170vw] -translate-x-1/2 rounded-[62%_38%_0_0/100%_100%_0_0] will-change-transform"
           style={{
             background:
-              'linear-gradient(to bottom, rgb(13 49 85 / 0.08), rgb(6 26 48 / 0.72) 54%, #061a30 100%)',
+              'linear-gradient(to bottom, rgb(250 247 239 / 0.34), rgb(242 238 228 / 0.9) 48%, #f2eee4 100%)',
           }}
         />
 
@@ -391,15 +407,15 @@ export default function Testimonials() {
         <div
           className="absolute inset-x-0 top-0"
           style={{
-            height: SEAM_TOP,
-            background: `radial-gradient(64% 100% at 78% 0%, ${SEAM_GLOW.top}, transparent 74%)`,
+            height: SEAM_BAND.top,
+            background: `radial-gradient(${SEAM_PLACEMENT.top} 0%, ${SEAM_GLOW.top}, transparent 74%)`,
           }}
         />
         <div
           className="absolute inset-x-0 bottom-0"
           style={{
-            height: SEAM_BOTTOM,
-            background: `radial-gradient(68% 100% at 26% 100%, ${SEAM_GLOW.bottom}, transparent 74%)`,
+            height: SEAM_BAND.bottom,
+            background: `radial-gradient(${SEAM_PLACEMENT.bottom} 100%, ${SEAM_GLOW.bottom}, transparent 76%)`,
           }}
         />
 

@@ -28,6 +28,28 @@ export const GRAIN =
 export const SEAM_GLOW = {
   /** Solutions → the bright field. The blue about to arrive, leaking upward. */
   top: 'rgb(44 133 229 / 0.10)',
-  /** The bright field → the footer. The last of the field's light, dying out. */
-  bottom: 'rgb(96 160 230 / 0.30)',
+  /** The bright field → the cream footer. Warm, because that is the light the
+   *  page ends on — the last of the field, already turning to paper. */
+  bottom: 'rgb(255 252 245 / 0.48)',
+} as const
+
+/**
+ * The height of each seam band. Shared for the same reason the colours are:
+ * the two halves of a boundary glow have to decay at the same rate, and a
+ * band that is 32vh on one side of the line and a percentage of an unrelated
+ * box on the other will not meet.
+ */
+export const SEAM_BAND = {
+  top: 'clamp(120px,15vh,210px)',
+  bottom: 'clamp(240px,32vh,430px)',
+} as const
+
+/**
+ * Where each glow is centred, horizontally, and how far it reaches. Both sides
+ * of a boundary must pass the identical values or the shared row will not
+ * evaluate to the same colour.
+ */
+export const SEAM_PLACEMENT = {
+  top: '64% 100% at 78%',
+  bottom: '74% 100% at 24%',
 } as const
