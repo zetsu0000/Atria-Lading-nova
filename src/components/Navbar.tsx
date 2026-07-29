@@ -4,7 +4,7 @@ import CtaButton from './CtaButton'
 
 const NAV_LINKS = [
   { label: 'Abordagem', href: '#solucoes' },
-  { label: 'Sobre', href: '#sobre' },
+  { label: 'Princípios', href: '#sobre' },
   { label: 'Contato', href: '#contato' },
 ]
 

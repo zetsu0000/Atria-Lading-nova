@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 const PRIMARY_LINKS = [
   { label: 'Início', href: '#top' },
   { label: 'Abordagem', href: '#solucoes' },
-  { label: 'Sobre', href: '#sobre' },
+  { label: 'Princípios', href: '#sobre' },
   { label: 'Contato', href: '#contato' },
 ]
 
@@ -236,9 +236,9 @@ export default function Footer() {
             Atria
           </a>
           <p className={`mt-5 max-w-[26ch] text-[#0a0a0a]/70 ${MICRO}`}>
-            Posicionamento e presença digital
+            Presença digital com direção.
             <br />
-            para dermatologistas.
+            Para dermatologistas.
           </p>
         </div>
 

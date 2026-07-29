@@ -39,7 +39,7 @@ const SIZES = {
  * off the background.
  */
 export default function CtaButton({
-  label = 'Conversar',
+  label = 'Avaliar presença',
   href = '#comecar',
   size = 'default',
   className = '',

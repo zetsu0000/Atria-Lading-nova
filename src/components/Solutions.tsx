@@ -50,7 +50,7 @@ function Editorial({ title, description, delay, className = '' }: EditorialProps
       </p>
 
       <div data-shown="false" className={RISE} style={{ transitionDelay: `${delay + 180}ms` }}>
-        <GhostCta label="Conhecer a abordagem" href="#contato" className="mt-8" />
+        <GhostCta label="Entender o processo" href="#contato" className="mt-8" />
       </div>
     </div>
   )
@@ -144,7 +144,7 @@ export default function Solutions() {
             className={`mt-6 max-w-[22ch] font-serif text-[clamp(30px,3.1vw,52px)] leading-[1.06] font-normal text-mineral italic ${RISE}`}
             style={{ transitionDelay: '90ms' }}
           >
-            Ter presença digital não significa ter direção.
+            Ser visto não é o mesmo que ser reconhecido.
           </h2>
         </header>
 
@@ -161,8 +161,8 @@ export default function Solutions() {
         >
           {/* ── Row 1 ── copy left, dominant card right ── */}
           <Editorial
-            title="Direção antes de exposição."
-            description="Antes de produzir qualquer canal, definimos como você quer ser percebido. As decisões seguintes deixam de ser isoladas."
+            title="Não comece pelo canal."
+            description="Primeiro, definimos o que deve ser reconhecido em você. Só então cada ponto de contato ganha uma função."
             delay={0}
             className="max-w-[560px] lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:justify-self-start"
           />
@@ -185,8 +185,8 @@ export default function Solutions() {
           {/* ── Row 2 ── card left, copy right. DOM stays copy-then-card so
               phones read Texto → Card on every row; the grid does the flip. ── */}
           <Editorial
-            title="Clareza antes de volume."
-            description="Linguagem e conteúdo passam a explicar o critério do seu trabalho, sem jargão, sem promessa e sem ruído entre canais."
+            title="Seu critério precisa aparecer."
+            description="Transformamos a complexidade da sua atuação em linguagem clara, autoral e coerente — sem simplificar o que torna você diferente."
             delay={120}
             className="mt-24 max-w-[560px] sm:mt-32 md:ml-auto lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:mt-0 lg:ml-0 lg:justify-self-end"
           />
@@ -208,8 +208,8 @@ export default function Solutions() {
           {/* ── Row 3 ── copy left, card right again, but narrower and wider in
               aspect so it never reads as a repeat of row 1. ── */}
           <Editorial
-            title="Encontrado pelos temas certos."
-            description="Encontrabilidade orientada a quem procura um dermatologista com o seu perfil — não a tráfego sem relação com a sua atuação."
+            title="Visibilidade sem aderência é ruído."
+            description="Conteúdo e busca aproximam sua presença dos temas que sustentam o seu posicionamento — não de qualquer tráfego."
             delay={0}
             className="mt-24 max-w-[560px] sm:mt-32 lg:col-span-5 lg:col-start-1 lg:row-start-3 lg:mt-0 lg:justify-self-start"
           />
