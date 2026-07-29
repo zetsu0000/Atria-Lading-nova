@@ -39,8 +39,10 @@ const SIZES = {
  * off the background.
  */
 export default function CtaButton({
-  label = 'Começar',
-  href = '#comecar',
+  label = 'Conversar',
+  // `#contato` é a única âncora de contato que existe na página (o rodapé).
+  // O padrão anterior, `#comecar`, não correspondia a nenhuma seção.
+  href = '#contato',
   size = 'default',
   className = '',
 }: CtaButtonProps) {

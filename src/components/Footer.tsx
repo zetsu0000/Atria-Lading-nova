@@ -236,9 +236,9 @@ export default function Footer() {
             Atria
           </a>
           <p className={`mt-5 max-w-[26ch] text-[#0a0a0a]/70 ${MICRO}`}>
-            Sistemas que percebem.
+            Posicionamento e presença digital
             <br />
-            Decisões que se explicam.
+            para dermatologistas.
           </p>
         </div>
 

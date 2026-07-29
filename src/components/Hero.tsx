@@ -37,7 +37,7 @@ export default function Hero() {
       >
         {/* Tagline — upper right on desktop, first line on mobile */}
         <p className="order-1 text-[clamp(1.2rem,1.92vw,1.72rem)] leading-tight tracking-[-0.01em] text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.55)] lg:col-start-2 lg:row-start-1 lg:self-start lg:pt-[26vh]">
-          Entre no Futuro.
+          Presença digital para dermatologistas.
         </p>
 
         {/* Oversized wordmark. Sized in container-query units so it scales with
@@ -56,9 +56,9 @@ export default function Hero() {
         {/* Description + primary CTA — bottom right, baseline-aligned with the wordmark */}
         <div className="order-3 mt-8 flex flex-col items-start lg:col-start-2 lg:row-start-2 lg:order-none lg:mt-0 lg:self-end lg:pb-1">
           <p className="max-w-[38ch] text-[12px] leading-[1.5] text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.6)] sm:text-[13.6px] lg:max-w-none">
-            A Atria une IA, arquitetura de sistemas e design para construir ambientes digitais
-            intuitivos e orientados pela percepção—redefinindo como as pessoas interagem com a
-            tecnologia.
+            A Atria organiza posicionamento, linguagem, conteúdo e encontrabilidade para que a
+            presença digital de um dermatologista esteja à altura da autoridade construída na
+            prática.
           </p>
           <CtaButton className="mt-7 lg:mt-9" />
         </div>

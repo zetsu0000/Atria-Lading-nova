@@ -20,33 +20,38 @@ const FIELD =
   'radial-gradient(120% 140% at 0% 0%, #2c85e5 0%, #62aaea 30%, #97cbf4 62%, #b7defb 100%)'
 
 /**
- * Placeholder copy. The names, roles and companies below are invented — swap
- * them for real, approved quotes before this goes live.
+ * ⚠️ CONTEÚDO PLACEHOLDER — NÃO PUBLICAR COMO ESTÁ.
  *
- * Ordered to answer the solutions section in the same sequence: perceber →
- * auditar → escalar. Each voice closes one of the three claims made upstream.
+ * As falas, os nomes, as funções e as clínicas abaixo são inventados. O guia de
+ * marca proíbe depoimento simulado e clínica ou médico inventados apresentados
+ * como prova (§21.3 e §25 de `docs/seo-posicionamento-marca-atria.md`). Antes do
+ * lançamento, esta lista precisa ser substituída por depoimentos reais com
+ * autorização registrada — ou a seção precisa sair do ar.
+ *
+ * Ordenados para responder à seção de abordagem na mesma sequência: direção →
+ * clareza → encontrabilidade. Cada voz fecha uma das três afirmações acima.
  */
 const VOICES = [
   {
     quote:
-      'Seis ferramentas viraram uma camada só. O time voltou a decidir com os dados em vez de reconciliar.',
+      'Minha presença deixou de ser um conjunto de canais soltos e passou a ter uma direção.',
     name: 'Helena Braga',
-    role: 'Diretora de Operações',
-    company: 'Verdano',
+    role: 'Dermatologista',
+    company: 'Clínica Vértice',
   },
   {
     quote:
-      'Os analistas confiam porque veem como cada recomendação foi construída. Rastreabilidade virou rotina.',
+      'Meus conteúdos passaram a explicar o meu critério, em vez de repetir o que todo mundo publica.',
     name: 'Camila Ferraz',
-    role: 'Head de Dados',
-    company: 'Instituto Mareé',
+    role: 'Dermatologista',
+    company: 'Instituto Marée',
   },
   {
     quote:
-      'A primeira versão entrou em produção em cinco semanas. Nada precisou ser reescrito quando a escala chegou.',
+      'As pessoas passaram a me encontrar pelos temas que realmente definem a minha atuação.',
     name: 'Rafael Nakamura',
-    role: 'CTO',
-    company: 'Lumeo Saúde',
+    role: 'Dermatologista e sócio',
+    company: 'Núcleo Derma',
   },
 ]
 
@@ -65,8 +70,8 @@ export default function Testimonials() {
   const bloomRef = useRef<HTMLDivElement>(null)
   const hazeRef = useRef<HTMLDivElement>(null)
   const footerCurtainRef = useRef<HTMLDivElement>(null)
-  const verdanoFillRef = useRef<HTMLSpanElement>(null)
-  const verdanoGlintRef = useRef<HTMLSpanElement>(null)
+  const leadFillRef = useRef<HTMLSpanElement>(null)
+  const leadGlintRef = useRef<HTMLSpanElement>(null)
   const headLineRefs = useRef<(HTMLSpanElement | null)[]>([])
   const quoteRefs = useRef<(HTMLParagraphElement | null)[]>([])
   const ruleRefs = useRef<(HTMLSpanElement | null)[]>([])
@@ -189,9 +194,9 @@ export default function Testimonials() {
           const rule = ruleRefs.current[index]
           const label = labelRefs.current[index]
           if (rule && label) {
-            if (index === 0 && verdanoFillRef.current) {
-              const fill = verdanoFillRef.current
-              const glint = verdanoGlintRef.current
+            if (index === 0 && leadFillRef.current) {
+              const fill = leadFillRef.current
+              const glint = leadGlintRef.current
 
               gsap.set(fill, { transformOrigin: 'left center' })
 
@@ -201,7 +206,7 @@ export default function Testimonials() {
               } else {
                 gsap.set(glint, { xPercent: -50, x: 0, autoAlpha: 0 })
 
-                const verdanoTl = gsap.timeline({
+                const leadTl = gsap.timeline({
                   scrollTrigger: {
                     trigger: rule,
                     start: 'top 92%',
@@ -211,7 +216,7 @@ export default function Testimonials() {
                   },
                 })
 
-                verdanoTl.fromTo(
+                leadTl.fromTo(
                   fill,
                   { scaleX: 0 },
                   { scaleX: 1, duration: 1, ease: 'none' },
@@ -219,7 +224,7 @@ export default function Testimonials() {
                 )
 
                 if (glint) {
-                  verdanoTl
+                  leadTl
                     .to(glint, { autoAlpha: 1, duration: 0.04, ease: 'none' }, 0)
                     .to(glint, { x: () => rule.offsetWidth, duration: 1, ease: 'none' }, 0)
                     .to(glint, { autoAlpha: 0, duration: 0.08, ease: 'none' }, 0.92)
@@ -447,7 +452,7 @@ export default function Testimonials() {
                 }}
                 className="block text-[clamp(1.5rem,2.5vw,2.15rem)] leading-[1.05] tracking-[0.01em] text-[#08223d] uppercase"
               >
-                Resultados
+                Evidência
               </span>
             </span>
             <span className="block overflow-hidden pb-[0.08em]">
@@ -457,7 +462,7 @@ export default function Testimonials() {
                 }}
                 className="block font-serif text-[clamp(2.4rem,4.4vw,4rem)] leading-[1.02] font-normal text-[#08223d] italic"
               >
-                antes de promessas
+                antes de promessa
               </span>
             </span>
           </h2>
@@ -481,7 +486,7 @@ export default function Testimonials() {
                     {index === 0 && (
                       <>
                         <span
-                          ref={verdanoFillRef}
+                          ref={leadFillRef}
                           className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 will-change-transform"
                           style={{
                             background:
@@ -490,7 +495,7 @@ export default function Testimonials() {
                           }}
                         />
                         <span
-                          ref={verdanoGlintRef}
+                          ref={leadGlintRef}
                           className="pointer-events-none absolute top-1/2 left-0 h-5 w-24 -translate-y-1/2 blur-[5px] will-change-transform"
                           style={{
                             background:

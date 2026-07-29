@@ -50,7 +50,7 @@ function Editorial({ title, description, delay, className = '' }: EditorialProps
       </p>
 
       <div data-shown="false" className={RISE} style={{ transitionDelay: `${delay + 180}ms` }}>
-        <GhostCta label="Conhecer solução" href="#contato" className="mt-8" />
+        <GhostCta label="Conhecer a abordagem" href="#contato" className="mt-8" />
       </div>
     </div>
   )
@@ -135,7 +135,7 @@ export default function Solutions() {
             data-shown="false"
             className={`inline-flex items-center rounded-full px-3.5 py-1.5 text-[11px] tracking-[0.18em] text-mineral/60 uppercase ring-1 ring-mineral/15 ring-inset ${RISE}`}
           >
-            Capacidades
+            Abordagem
           </p>
 
           <h2
@@ -144,7 +144,7 @@ export default function Solutions() {
             className={`mt-6 max-w-[22ch] font-serif text-[clamp(30px,3.1vw,52px)] leading-[1.06] font-normal text-mineral italic ${RISE}`}
             style={{ transitionDelay: '90ms' }}
           >
-            Sistemas que percebem. Decisões que se explicam.
+            Ter presença digital não significa ter direção.
           </h2>
         </header>
 
@@ -161,8 +161,8 @@ export default function Solutions() {
         >
           {/* ── Row 1 ── copy left, dominant card right ── */}
           <Editorial
-            title="Ver antes de responder."
-            description="Os sinais do ambiente chegam antes da pergunta. A interface se ajusta no instante em que a situação muda."
+            title="Direção antes de exposição."
+            description="Antes de produzir qualquer canal, definimos como você quer ser percebido. As decisões seguintes deixam de ser isoladas."
             delay={0}
             className="max-w-[560px] lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:justify-self-start"
           />
@@ -176,7 +176,7 @@ export default function Solutions() {
               <SolutionMedia
                 image="/sol-01.webp"
                 sources={[{ src: '/sol-01.mp4', type: 'video/mp4' }]}
-                alt="Retrato sob luz vermelha e ciano — o sistema lendo o ambiente"
+                alt="Retrato editorial sob luz vermelha e ciano"
                 className="size-full object-cover object-center"
               />
             </SolutionCard>
@@ -185,8 +185,8 @@ export default function Solutions() {
           {/* ── Row 2 ── card left, copy right. DOM stays copy-then-card so
               phones read Texto → Card on every row; the grid does the flip. ── */}
           <Editorial
-            title="Confiança se audita."
-            description="Toda recomendação carrega o raciocínio que a produziu, aberto para quem precisa responder por ela."
+            title="Clareza antes de volume."
+            description="Linguagem e conteúdo passam a explicar o critério do seu trabalho, sem jargão, sem promessa e sem ruído entre canais."
             delay={120}
             className="mt-24 max-w-[560px] sm:mt-32 md:ml-auto lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:mt-0 lg:ml-0 lg:justify-self-end"
           />
@@ -199,7 +199,7 @@ export default function Solutions() {
               <SolutionMedia
                 image="/sol-02.webp"
                 sources={[{ src: '/sol-02.mp4', type: 'video/mp4' }]}
-                alt="Retrato em repouso sob gradiente coral e âmbar, olhos fechados"
+                alt="Retrato editorial em repouso sob gradiente coral e âmbar, olhos fechados"
                 className="size-full object-cover object-center"
               />
             </SolutionCard>
@@ -208,8 +208,8 @@ export default function Solutions() {
           {/* ── Row 3 ── copy left, card right again, but narrower and wider in
               aspect so it never reads as a repeat of row 1. ── */}
           <Editorial
-            title="Escala não é reescrita."
-            description="Cada módulo evolui isolado. O sistema absorve dez vezes mais volume sem exigir que nada seja refeito do zero."
+            title="Encontrado pelos temas certos."
+            description="Encontrabilidade orientada a quem procura um dermatologista com o seu perfil — não a tráfego sem relação com a sua atuação."
             delay={0}
             className="mt-24 max-w-[560px] sm:mt-32 lg:col-span-5 lg:col-start-1 lg:row-start-3 lg:mt-0 lg:justify-self-start"
           />
@@ -223,7 +223,7 @@ export default function Solutions() {
               <SolutionMedia
                 image="/sol-03.webp"
                 sources={[{ src: '/sol-03.mp4', type: 'video/mp4' }]}
-                alt="Perfil em contraluz azul com feixe ciano percorrendo o rosto"
+                alt="Perfil editorial em contraluz azul com feixe ciano percorrendo o rosto"
                 className="size-full object-cover object-center"
               />
             </SolutionCard>
