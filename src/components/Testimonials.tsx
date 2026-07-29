@@ -68,9 +68,9 @@ export default function Testimonials() {
   const rootRef = useRef<HTMLElement>(null)
   const bloomRef = useRef<HTMLDivElement>(null)
   const hazeRef = useRef<HTMLDivElement>(null)
-  const headRuleRef = useRef<HTMLDivElement>(null)
-  const headFillRef = useRef<HTMLDivElement>(null)
-  const headGlintRef = useRef<HTMLSpanElement>(null)
+  const footerCurtainRef = useRef<HTMLDivElement>(null)
+  const verdanoFillRef = useRef<HTMLSpanElement>(null)
+  const verdanoGlintRef = useRef<HTMLSpanElement>(null)
   const headLineRefs = useRef<(HTMLSpanElement | null)[]>([])
   const quoteRefs = useRef<(HTMLParagraphElement | null)[]>([])
   const ruleRefs = useRef<(HTMLSpanElement | null)[]>([])
@@ -122,8 +122,36 @@ export default function Testimonials() {
           )
         }
 
-        // Header. The two title lines rise out of their own overflow; the rule
-        // below them only surfaces — it is drawn by scroll, not by an entrance.
+        // A restrained curved curtain closes the bright field into the footer.
+        // The section and footer already agree on their boundary colour; this
+        // only gives that handoff a little depth and motion.
+        if (footerCurtainRef.current) {
+          if (reduce) {
+            gsap.set(footerCurtainRef.current, {
+              scaleX: 1.06,
+              yPercent: 0,
+            })
+          } else {
+            gsap.fromTo(
+              footerCurtainRef.current,
+              { scaleX: 0.68, yPercent: 28 },
+              {
+                scaleX: 1.06,
+                yPercent: 0,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: rootRef.current,
+                  start: 'bottom 140%',
+                  end: 'bottom bottom',
+                  scrub: 0.8,
+                  invalidateOnRefresh: true,
+                },
+              },
+            )
+          }
+        }
+
+        // Header. The two title lines rise out of their own overflow.
         const headTl = gsap.timeline({
           scrollTrigger: { trigger: rootRef.current, start: 'top 78%', once: true },
         })
@@ -135,61 +163,6 @@ export default function Testimonials() {
           stagger: reduce ? 0 : 0.09,
         })
 
-        if (headRuleRef.current) {
-          headTl.from(
-            headRuleRef.current,
-            { autoAlpha: 0, duration: reduce ? 0 : 0.8, ease: 'power2.out' },
-            reduce ? 0 : 0.35,
-          )
-        }
-
-        // The rule is the section's narrative progress: a hairline that draws
-        // itself as the reader descends, carrying a small light at the tip.
-        //
-        // The scrub is scoped to the rule's own travel up the viewport rather
-        // than to the full height of the section. Tied to the section, the line
-        // would still be at roughly a third when it scrolled off the top and
-        // would never be seen finishing — a progress bar that never completes.
-        // Scoped this way it starts near-invisible and lands on 100% at the
-        // moment it leaves, which is the reading the direction asks for.
-        const rule = headRuleRef.current
-        const headFill = headFillRef.current
-        const glint = headGlintRef.current
-
-        if (rule && headFill) {
-          gsap.set(headFill, { transformOrigin: 'left center' })
-
-          if (reduce) {
-            gsap.set(headFill, { scaleX: 1 })
-            gsap.set(glint, { autoAlpha: 0 })
-          } else {
-            gsap.set(glint, { xPercent: -50, yPercent: -50, x: 0, autoAlpha: 0 })
-
-            const ruleTl = gsap.timeline({
-              scrollTrigger: {
-                trigger: rule,
-                start: 'top 88%',
-                end: 'top 8%',
-                scrub: 0.8,
-                invalidateOnRefresh: true,
-              },
-            })
-
-            ruleTl.fromTo(headFill, { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'none' }, 0)
-
-            // The glint rides the tip as a sibling rather than a child of the
-            // fill: inside it, the parent's scaleX would stretch it from a dot
-            // into a smear. Same timeline, same linear ease, so the two stay
-            // locked together; the width is read at refresh, not at build.
-            if (glint) {
-              ruleTl
-                .to(glint, { autoAlpha: 1, duration: 0.05, ease: 'none' }, 0)
-                .to(glint, { x: () => rule.offsetWidth, duration: 1, ease: 'none' }, 0)
-                .to(glint, { autoAlpha: 0, duration: 0.06, ease: 'none' }, 0.94)
-            }
-          }
-        }
-
         quoteRefs.current.forEach((quote, index) => {
           if (!quote) return
 
@@ -200,19 +173,64 @@ export default function Testimonials() {
           const rule = ruleRefs.current[index]
           const label = labelRefs.current[index]
           if (rule && label) {
-            gsap
-              .timeline({ scrollTrigger: { trigger: rule, start: 'top 94%', once: true } })
-              .from(rule, {
-                scaleX: 0,
-                transformOrigin: 'left center',
-                duration: reduce ? 0 : 1.1,
-                ease: 'power3.inOut',
-              })
-              .from(
-                label,
-                { opacity: 0, duration: reduce ? 0 : 0.6, ease: 'power2.out' },
-                reduce ? 0 : 0.4,
-              )
+            if (index === 0 && verdanoFillRef.current) {
+              const fill = verdanoFillRef.current
+              const glint = verdanoGlintRef.current
+
+              gsap.set(fill, { transformOrigin: 'left center' })
+
+              if (reduce) {
+                gsap.set(fill, { scaleX: 1 })
+                gsap.set(glint, { autoAlpha: 0 })
+              } else {
+                gsap.set(glint, { xPercent: -50, x: 0, autoAlpha: 0 })
+
+                const verdanoTl = gsap.timeline({
+                  scrollTrigger: {
+                    trigger: rule,
+                    start: 'top 92%',
+                    end: 'top 34%',
+                    scrub: 0.65,
+                    invalidateOnRefresh: true,
+                  },
+                })
+
+                verdanoTl.fromTo(
+                  fill,
+                  { scaleX: 0 },
+                  { scaleX: 1, duration: 1, ease: 'none' },
+                  0,
+                )
+
+                if (glint) {
+                  verdanoTl
+                    .to(glint, { autoAlpha: 1, duration: 0.04, ease: 'none' }, 0)
+                    .to(glint, { x: () => rule.offsetWidth, duration: 1, ease: 'none' }, 0)
+                    .to(glint, { autoAlpha: 0, duration: 0.08, ease: 'none' }, 0.92)
+                }
+
+                gsap.from(label, {
+                  opacity: 0,
+                  duration: 0.65,
+                  ease: 'power2.out',
+                  scrollTrigger: { trigger: rule, start: 'top 94%', once: true },
+                })
+              }
+            } else {
+              gsap
+                .timeline({ scrollTrigger: { trigger: rule, start: 'top 94%', once: true } })
+                .from(rule, {
+                  scaleX: 0,
+                  transformOrigin: 'left center',
+                  duration: reduce ? 0 : 1.1,
+                  ease: 'power3.inOut',
+                })
+                .from(
+                  label,
+                  { opacity: 0, duration: reduce ? 0 : 0.6, ease: 'power2.out' },
+                  reduce ? 0 : 0.4,
+                )
+            }
           }
 
           const foot = footRefs.current[index]
@@ -295,7 +313,7 @@ export default function Testimonials() {
       ref={rootRef}
       id="sobre"
       aria-labelledby="vozes-titulo"
-      className="relative isolate px-5 pt-28 pb-28 sm:px-8 sm:pt-36 sm:pb-36 lg:px-9 lg:pt-48 lg:pb-52"
+      className="relative isolate px-5 pt-[9.9rem] pb-36 sm:px-8 sm:pt-[12.1rem] sm:pb-48 lg:px-9 lg:pt-[15.4rem] lg:pb-64"
     >
       {/* ── The field ─────────────────────────────────────────────────────
           Five layers, none of them content: the sampled gradient, two drifting
@@ -356,6 +374,15 @@ export default function Testimonials() {
           }}
         />
 
+        <div
+          ref={footerCurtainRef}
+          className="absolute -bottom-px left-1/2 h-[clamp(150px,20vh,260px)] w-[150vw] -translate-x-1/2 rounded-[50%_50%_0_0/100%_100%_0_0] opacity-80 will-change-transform"
+          style={{
+            background:
+              'linear-gradient(to bottom, rgb(13 49 85 / 0.08), rgb(6 26 48 / 0.72) 54%, #061a30 100%)',
+          }}
+        />
+
         {/* Half of each boundary glow — the other half lives in the section on
             the far side of the line, anchored to its own edge with the same
             colour and placement. Painted over the seams, so what the reader
@@ -388,10 +415,10 @@ export default function Testimonials() {
       </div>
 
       <div className="mx-auto w-full max-w-[1600px]">
-        {/* Title, then the rule. No eyebrow, no count, no index: the scroll
-            already says there are more voices below, and labelling that turns
-            an editorial section into a carousel chrome. */}
-        <header>
+        {/* No eyebrow, count or index: the scroll already says there are more
+            voices below, and labelling that turns an editorial section into
+            carousel chrome. */}
+        <header className="flex flex-col items-center text-center">
           {/* Sans caps against serif italic, on two lines. The same pairing the
               quotes and the solutions titles already use — stated here at the
               scale of a heading, so the section's voice is set before the first
@@ -412,46 +439,19 @@ export default function Testimonials() {
                 ref={(el) => {
                   headLineRefs.current[1] = el
                 }}
-                className="block pl-[0.06em] font-serif text-[clamp(2.4rem,4.4vw,4rem)] leading-[1.02] font-normal text-[#08223d] italic"
+                className="block font-serif text-[clamp(2.4rem,4.4vw,4rem)] leading-[1.02] font-normal text-[#08223d] italic"
               >
                 antes de promessas
               </span>
             </span>
           </h2>
-
-          {/* The rule the section is written on: the same axis the three ledger
-              rules below sit on, so they read as its repetitions. `visible`
-              rather than clipped — the glint has to be allowed past the end. */}
-          <div
-            ref={headRuleRef}
-            aria-hidden="true"
-            className="relative mt-11 h-px w-full overflow-visible bg-[#08223d]/14 sm:mt-14"
-          >
-            <div
-              ref={headFillRef}
-              className="absolute inset-0 will-change-transform"
-              style={{
-                background:
-                  'linear-gradient(90deg, rgb(4 46 82 / 0.20) 0%, rgb(47 107 255 / 0.5) 58%, rgb(104 171 255 / 0.85) 100%)',
-              }}
-            />
-            <span
-              ref={headGlintRef}
-              className="pointer-events-none absolute top-1/2 left-0 h-3 w-20 blur-[3px] will-change-transform"
-              style={{
-                background:
-                  'radial-gradient(ellipse at center, rgb(104 171 255 / 0.75) 0%, rgb(104 171 255 / 0.25) 32%, transparent 72%)',
-              }}
-            />
-          </div>
         </header>
 
-        {/* Voices. The rules run the full width on every row — the same axis
-            as the header rule, so the section reads as one ledger — while the
-            quotes step off it. Nothing here sits on a surface: no card, no
-            fill, no border but the hairline. */}
-        <div className="mt-24 sm:mt-28 lg:mt-36">
-          <ul className="flex flex-col gap-[clamp(112px,16vh,196px)]">
+        {/* Voices. The rules run the full width while the quotes step off-axis.
+            Nothing here sits on a surface: no card, no fill, no border but the
+            hairline. */}
+        <div className="mt-28 sm:mt-36 lg:mt-48">
+          <ul className="flex flex-col gap-[clamp(152px,22vh,260px)]">
             {VOICES.map((voice, index) => (
               <li key={voice.name}>
                 <div className="flex items-center gap-5 sm:gap-6">
@@ -460,8 +460,30 @@ export default function Testimonials() {
                       ruleRefs.current[index] = el
                     }}
                     aria-hidden="true"
-                    className="h-px flex-1 bg-[#08223d]/20"
-                  />
+                    className="relative h-px flex-1 overflow-visible bg-[#08223d]/20"
+                  >
+                    {index === 0 && (
+                      <>
+                        <span
+                          ref={verdanoFillRef}
+                          className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 will-change-transform"
+                          style={{
+                            background:
+                              'linear-gradient(90deg, rgb(8 34 61 / 0.18) 0%, rgb(47 107 255 / 0.42) 70%, rgb(104 171 255 / 0.62) 100%)',
+                            boxShadow: '0 0 12px rgb(47 107 255 / 0.18)',
+                          }}
+                        />
+                        <span
+                          ref={verdanoGlintRef}
+                          className="pointer-events-none absolute top-1/2 left-0 h-5 w-24 -translate-y-1/2 blur-[5px] will-change-transform"
+                          style={{
+                            background:
+                              'radial-gradient(ellipse at center, rgb(134 188 255 / 0.62) 0%, rgb(47 107 255 / 0.26) 36%, transparent 74%)',
+                          }}
+                        />
+                      </>
+                    )}
+                  </span>
                   <span
                     ref={(el) => {
                       labelRefs.current[index] = el
@@ -472,7 +494,7 @@ export default function Testimonials() {
                   </span>
                 </div>
 
-                <blockquote className={`mt-9 sm:mt-12 ${INDENT[index]}`}>
+                <blockquote className={`mt-12 sm:mt-16 ${INDENT[index]}`}>
                   <p
                     ref={(el) => {
                       quoteRefs.current[index] = el
@@ -482,7 +504,7 @@ export default function Testimonials() {
                     {voice.quote}
                   </p>
 
-                  <footer className="mt-10 flex gap-5 sm:mt-12">
+                  <footer className="mt-12 flex gap-5 sm:mt-16">
                     <span
                       ref={(el) => {
                         markRefs.current[index] = el
