@@ -1,4 +1,5 @@
 import CtaButton from './CtaButton'
+import { GRAIN, SEAM_GLOW } from '../lib/grain'
 
 const FOOTER_COLUMNS = [
   {
@@ -30,8 +31,45 @@ export default function Footer() {
   return (
     // Deep end of the same blue rather than more gradient: the page runs bright
     // from the hero down, and it needs something to close on.
-    <footer id="contato" className="bg-[#061a30] px-5 pt-20 pb-10 sm:px-8 sm:pt-28 lg:px-9">
-      <div className="mx-auto w-full max-w-[1600px]">
+    <footer
+      id="contato"
+      className="relative isolate overflow-hidden bg-[#061a30] px-5 pt-24 pb-10 sm:px-8 sm:pt-32 lg:px-9 lg:pt-40"
+    >
+      {/* The field above does not stop at this edge — it runs out of light over
+          the first stretch of the footer. The glow is the far half of the pair
+          the testimonials section anchors to its own bottom edge: same colour,
+          same 26% placement, same rate, so the two evaluate identically on the
+          shared pixel row and there is no line to see. The grain is the same
+          noise the two sections above carry; without it the join is visible as
+          a change in texture even where the colour is continuous.
+
+          The extra top padding is part of the transition too: the light needs
+          somewhere to die before the first heading, or the closing statement
+          lands inside the seam. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute inset-x-0 top-0 h-[clamp(180px,24vh,320px)]"
+          style={{
+            background: `radial-gradient(68% 100% at 26% 0%, ${SEAM_GLOW.bottom}, transparent 74%)`,
+          }}
+        />
+        {/* A second, much wider fall-off under it. The mirrored glow alone ends
+            where its band ends, which puts a soft but findable edge a few
+            hundred pixels in; this carries the last of it down past that. */}
+        <div
+          className="absolute inset-x-0 top-0 h-[62%]"
+          style={{
+            background:
+              'radial-gradient(90% 100% at 30% 0%, rgb(58 122 196 / 0.16), transparent 76%)',
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
+          style={{ backgroundImage: GRAIN }}
+        />
+      </div>
+
+      <div className="relative mx-auto w-full max-w-[1600px]">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
           <div className="max-w-[42ch]">
             <h2 className="text-[clamp(1.65rem,3vw,2.6rem)] leading-[1.05] tracking-[-0.01em] text-white uppercase">

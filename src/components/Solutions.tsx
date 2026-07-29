@@ -2,9 +2,7 @@ import { useEffect, useRef } from 'react'
 import GhostCta from './GhostCta'
 import SolutionCard from './SolutionCard'
 import SolutionMedia from './SolutionMedia'
-
-const GRAIN =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")"
+import { GRAIN, SEAM_GLOW } from '../lib/grain'
 
 /**
  * Enter transition. 20px of travel over 640ms — enough to feel deliberate,
@@ -107,6 +105,22 @@ export default function Solutions() {
             ].join(','),
           }}
         />
+        {/* The far half of the seam this section shares with the bright field
+            below it. Anchored to the bottom edge with the same colour and the
+            same horizontal placement as its counterpart there, so the two meet
+            at identical values on the shared row and the blue appears to be
+            arriving rather than switched on. Sits under the third halo, which
+            is already the coolest light in the room — this reads as that halo
+            reaching the edge. */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[clamp(120px,15vh,210px)]"
+          style={{
+            background: `radial-gradient(64% 100% at 78% 100%, ${SEAM_GLOW.top}, transparent 74%)`,
+          }}
+        />
+
+        {/* Grain last — it is the page's dither as much as its texture, and it
+            has to lie over the seam glow for that to work. */}
         <div
           className="absolute inset-0 opacity-[0.045] mix-blend-overlay"
           style={{ backgroundImage: GRAIN }}
