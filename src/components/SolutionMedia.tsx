@@ -32,8 +32,20 @@ export default function SolutionMedia({
     const video = videoRef.current
     if (!video) return
 
+    // Same iOS guard as AtriaFilm: force muted as attribute + property, and
+    // retry on the first touch when autoplay is refused (Low Power Mode).
+    video.muted = true
+    video.defaultMuted = true
+    video.setAttribute('muted', '')
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     let near = false
+
+    const retryOnGesture = () => {
+      window.removeEventListener('touchend', retryOnGesture)
+      window.removeEventListener('pointerdown', retryOnGesture)
+      sync()
+    }
 
     const sync = () => {
       if (reduceMotion.matches) {
@@ -41,9 +53,17 @@ export default function SolutionMedia({
         video.currentTime = 0
         return
       }
-      if (near) void video.play().catch(() => {})
-      else video.pause()
+      if (near) {
+        void video.play().catch(() => {
+          window.addEventListener('touchend', retryOnGesture, { once: true, passive: true })
+          window.addEventListener('pointerdown', retryOnGesture, { once: true, passive: true })
+        })
+      } else {
+        video.pause()
+      }
     }
+
+    video.addEventListener('loadeddata', sync)
 
     // Only decode while the card is near the viewport.
     const observer = new IntersectionObserver(
@@ -61,6 +81,9 @@ export default function SolutionMedia({
     return () => {
       observer.disconnect()
       reduceMotion.removeEventListener('change', sync)
+      video.removeEventListener('loadeddata', sync)
+      window.removeEventListener('touchend', retryOnGesture)
+      window.removeEventListener('pointerdown', retryOnGesture)
     }
   }, [hasVideo])
 

@@ -21,8 +21,24 @@ export default function AtriaFilm({ className = '' }: AtriaFilmProps) {
     const video = videoRef.current
     if (!video) return
 
+    // React sets `muted` as a DOM property, not an attribute — some iOS
+    // builds only honour the attribute when deciding whether autoplay is
+    // allowed, so both are forced here before any play() attempt.
+    video.muted = true
+    video.defaultMuted = true
+    video.setAttribute('muted', '')
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     let onScreen = true
+
+    // iOS refuses autoplay in Low Power Mode and paints a play glyph over the
+    // frame. The first touch anywhere is a user gesture, which unlocks
+    // playback — retry there instead of leaving the glyph up.
+    const retryOnGesture = () => {
+      window.removeEventListener('touchend', retryOnGesture)
+      window.removeEventListener('pointerdown', retryOnGesture)
+      sync()
+    }
 
     const sync = () => {
       if (reduceMotion.matches) {
@@ -31,12 +47,18 @@ export default function AtriaFilm({ className = '' }: AtriaFilmProps) {
         return
       }
       if (onScreen) {
-        // Rejects when autoplay is blocked; the poster stays up, which is fine.
-        void video.play().catch(() => {})
+        void video.play().catch(() => {
+          window.addEventListener('touchend', retryOnGesture, { once: true, passive: true })
+          window.addEventListener('pointerdown', retryOnGesture, { once: true, passive: true })
+        })
       } else {
         video.pause()
       }
     }
+
+    // Autoplay can also fail because not enough is buffered on a slow mobile
+    // connection; try again once the first frames are decodable.
+    video.addEventListener('loadeddata', sync)
 
     // Start a little before the section scrolls in, so it is already running by
     // the time it is actually visible.
@@ -55,6 +77,9 @@ export default function AtriaFilm({ className = '' }: AtriaFilmProps) {
     return () => {
       observer.disconnect()
       reduceMotion.removeEventListener('change', sync)
+      video.removeEventListener('loadeddata', sync)
+      window.removeEventListener('touchend', retryOnGesture)
+      window.removeEventListener('pointerdown', retryOnGesture)
     }
   }, [])
 

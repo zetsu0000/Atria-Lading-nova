@@ -32,6 +32,19 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* iOS Safari paints a grey play glyph over inline videos it refused to
+   autoplay (e.g. Low Power Mode). Every video on this page is a muted
+   background film with no controls — the glyph is never a control the user
+   should see, so suppress it and let the poster frame stand alone. */
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+  opacity: 0;
+}
+
 body {
   margin: 0;
   background-color: #000;

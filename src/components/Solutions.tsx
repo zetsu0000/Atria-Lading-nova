@@ -154,7 +154,9 @@ export default function Solutions() {
             drifting with the column maths. Nothing is 50/50. */}
         <div
           className={[
-            'mt-[88px] sm:mt-[106px] lg:mt-[clamp(92px,7.15vw,128px)]',
+            // 88px of empty ink read fine on a wide row but as a hole on a
+            // phone column; 64px keeps the pause without the dead air.
+            'mt-16 sm:mt-[106px] lg:mt-[clamp(92px,7.15vw,128px)]',
             'lg:grid lg:grid-cols-12 lg:grid-rows-[auto_auto_auto] lg:items-center',
             'lg:gap-x-8 lg:gap-y-[clamp(96px,7vw,140px)]',
           ].join(' ')}
@@ -169,7 +171,7 @@ export default function Solutions() {
 
           <div
             data-shown="false"
-            className={`mt-12 lg:col-start-7 lg:col-end-13 lg:row-start-1 lg:mt-0 lg:justify-self-end ${RISE}`}
+            className={`mt-8 lg:col-start-7 lg:col-end-13 lg:row-start-1 lg:mt-0 lg:justify-self-end ${RISE}`}
             style={{ transitionDelay: '120ms' }}
           >
             <SolutionCard className={CARD}>
@@ -188,12 +190,12 @@ export default function Solutions() {
             title="Seu critério precisa aparecer."
             description="Transformamos a complexidade da sua atuação em linguagem clara, autoral e coerente — sem simplificar o que torna você diferente."
             delay={120}
-            className="mt-24 max-w-[560px] sm:mt-32 md:ml-auto lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:mt-0 lg:ml-0 lg:justify-self-end"
+            className="mt-20 max-w-[560px] sm:mt-28 md:ml-auto lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:mt-0 lg:ml-0 lg:justify-self-end"
           />
 
           <div
             data-shown="false"
-            className={`mt-12 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:mt-0 lg:justify-self-start ${RISE}`}
+            className={`mt-8 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:mt-0 lg:justify-self-start ${RISE}`}
           >
             <SolutionCard className={CARD}>
               <SolutionMedia
@@ -211,12 +213,12 @@ export default function Solutions() {
             title="Ser encontrado pelo que diferencia você."
             description="Organizamos conteúdo e busca para dar visibilidade aos temas que melhor representam a sua atuação."
             delay={0}
-            className="mt-24 max-w-[560px] sm:mt-32 lg:col-span-5 lg:col-start-1 lg:row-start-3 lg:mt-0 lg:justify-self-start"
+            className="mt-20 max-w-[560px] sm:mt-28 lg:col-span-5 lg:col-start-1 lg:row-start-3 lg:mt-0 lg:justify-self-start"
           />
 
           <div
             data-shown="false"
-            className={`mt-12 lg:col-start-7 lg:col-end-13 lg:row-start-3 lg:mt-0 lg:justify-self-end ${RISE}`}
+            className={`mt-8 lg:col-start-7 lg:col-end-13 lg:row-start-3 lg:mt-0 lg:justify-self-end ${RISE}`}
             style={{ transitionDelay: '120ms' }}
           >
             <SolutionCard className={CARD}>

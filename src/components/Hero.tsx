@@ -1,17 +1,62 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AtriaFilm from './AtriaFilm'
 import CtaButton from './CtaButton'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const filmRef = useRef<HTMLDivElement>(null)
+
+  // On phones the whole hero used to slide away as one flat block, which read
+  // as a plain screenshot next to the desktop version. Letting the film lag
+  // behind the scroll (a quarter of the scroll distance, scrubbed) keeps the
+  // face pinned in view while the copy exits over it — the same depth the
+  // desktop composition gets from its full-viewport frame. The film only ever
+  // moves down slower than the section leaves, so the top edge it exposes
+  // stays above the viewport and no seam can show. Desktop keeps the static
+  // frame it always had; reduced motion opts out with the rest of the page.
+  useEffect(() => {
+    const media = gsap.matchMedia()
+    media.add(
+      '(max-width: 1023px) and (prefers-reduced-motion: no-preference)',
+      () => {
+        gsap.fromTo(
+          filmRef.current,
+          { yPercent: 0 },
+          {
+            yPercent: 24,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true,
+            },
+          },
+        )
+      },
+    )
+    return () => media.revert()
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       id="top"
       className="relative isolate flex min-h-svh flex-col overflow-hidden bg-black px-5 pt-28 pb-8 sm:px-8 sm:pt-32 lg:px-9 lg:pb-9"
     >
       {/* Background film — an 8s glass-panel reveal that pushes into a macro
           shot, which is what gives the hero its depth. Kept on a black base so
-          a slow or blocked video degrades to the plain black hero. */}
+          a slow or blocked video degrades to the plain black hero. The film
+          sits in its own layer so the parallax moves the footage alone — the
+          scrims below stay pinned to the type they exist to protect. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black">
-        <AtriaFilm className="size-full object-cover object-center" />
+        <div ref={filmRef} className="absolute inset-0 will-change-transform">
+          <AtriaFilm className="size-full object-cover object-center" />
+        </div>
 
         {/* Scrims are pinned to where type actually sits and fade out well
             before the middle of the frame, so the film itself runs at full

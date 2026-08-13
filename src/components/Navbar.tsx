@@ -12,16 +12,25 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6 lg:px-9 lg:pt-9">
+    <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8 sm:pt-6 lg:px-9 lg:pt-9">
       {/* Two reductions on top of the original: -10%, then -15%, so every
           value here is 76.5% of what it started at — width included, which is
           why the pill floats well inset from the hero content. A percentage
           width rather than only a smaller `max-w`, because a cap alone would
           bite only on very wide viewports and leave the change invisible on
-          most screens. `mx-auto` centres it as it narrows. */}
+          most screens. `mx-auto` centres it as it narrows.
+
+          The 76.5% only applies from lg up: on a phone it left a stub pill
+          floating off the content grid, so below lg the pill spans the same
+          px-5/px-8 gutters the hero copy uses and rounds as a full pill. */}
       <nav
         aria-label="Principal"
-        className="mx-auto w-[76.5%] max-w-[1224px] rounded-[1.53rem] bg-white/10 shadow-[inset_0_1px_0_rgb(255_255_255/0.25)] ring-1 ring-white/20 backdrop-blur-2xl lg:rounded-full"
+        className={[
+          // Full pill while closed; the expanded menu panel needs a card
+          // radius or the stadium shape swallows its corners.
+          isMenuOpen ? 'rounded-[1.53rem]' : 'rounded-full',
+          'mx-auto w-full max-w-[1224px] bg-white/10 shadow-[inset_0_1px_0_rgb(255_255_255/0.25)] ring-1 ring-white/20 backdrop-blur-2xl lg:w-[76.5%] lg:rounded-full',
+        ].join(' ')}
       >
         <div className="flex h-[3.06rem] items-center justify-between gap-[0.765rem] pr-[0.287rem] pl-[0.956rem] sm:pl-[1.339rem] lg:h-[3.634rem] lg:grid lg:grid-cols-[1fr_auto_1fr] lg:pl-[1.721rem]">
           {/* Desktop links (left) */}
