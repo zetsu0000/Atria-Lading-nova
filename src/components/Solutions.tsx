@@ -127,7 +127,14 @@ export default function Solutions() {
         />
       </div>
 
-      <div className="relative mx-auto w-full max-w-[1640px] px-5 py-24 sm:px-10 sm:py-28 lg:px-16 lg:py-[clamp(120px,7.5vw,145px)]">
+      {/* The hero hands over on a hard cut from film to ink, so on a phone the
+          gap either side of that cut is the whole transition. 32px of film
+          under the CTA and then 96px of empty ink put almost all of it after
+          the cut, which read as the hero being clipped short and the section
+          starting late. The hero now keeps 48px under its CTA and this side
+          opens at 64px — the same total, weighted onto the lit side of the
+          seam. */}
+      <div className="relative mx-auto w-full max-w-[1640px] px-5 pt-16 pb-24 sm:px-10 sm:py-28 lg:px-16 lg:py-[clamp(120px,7.5vw,145px)]">
         {/* Section heading — badge over a centred serif line, the one centred
             element in a section that is otherwise deliberately off-axis. */}
         <header className="flex flex-col items-center text-center">

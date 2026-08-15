@@ -46,7 +46,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative isolate flex min-h-svh flex-col overflow-hidden bg-black px-5 pt-28 pb-8 sm:px-8 sm:pt-32 lg:px-9 lg:pb-9"
+      className="relative isolate flex min-h-svh flex-col overflow-hidden bg-black px-5 pt-28 pb-12 sm:px-8 sm:pt-32 sm:pb-8 lg:px-9 lg:pb-9"
     >
       {/* Background film — an 8s glass-panel reveal that pushes into a macro
           shot, which is what gives the hero its depth. Kept on a black base so
@@ -88,23 +88,39 @@ export default function Hero() {
         {/* Oversized wordmark. Sized in container-query units so it scales with
             its column rather than the viewport: "Atria" in Stack Sans Text at
             weight 400 and -0.035em tracking advances ~2.14x its font size, so
-            44.5cqw filled the column edge-to-edge — 35.6cqw is that at -20%,
+            44.5cqw fills the column edge-to-edge — 35.6cqw is that at -20%,
             leaving ~20% of the column as trailing space. The negative margin
             cancels the leading "A" side bearing (0.038em) so the letter still
-            sits flush with the column edge. */}
+            sits flush with the column edge.
+
+            That 20% trailing space is a wide-column device: beside it the
+            desktop layout has a second column to fill. On a phone the column
+            is the whole screen, so the same value stranded ~115px of dead air
+            to the right of the word and made the masthead read undersized —
+            worse now that the paragraph below it is gone. Phones therefore
+            take the full 44.5cqw, capped against the viewport height so a
+            landscape phone can't blow the wordmark past the frame. */}
         <div className="@container order-2 mt-auto pt-12 sm:pt-16 lg:col-start-1 lg:row-start-2 lg:order-none lg:mt-0 lg:pt-0 lg:self-end">
-          <h1 className="-ml-[0.04em] text-[35.6cqw] leading-[0.82] font-normal tracking-[-0.035em] text-white [text-shadow:0_4px_40px_rgb(0_0_0/0.30)]">
+          <h1 className="-ml-[0.04em] text-[min(47cqw,30svh)] leading-[0.82] font-normal tracking-[-0.035em] text-white [text-shadow:0_4px_40px_rgb(0_0_0/0.30)] sm:text-[35.6cqw]">
             Atria
           </h1>
         </div>
 
-        {/* Description + primary CTA — bottom right, baseline-aligned with the wordmark */}
+        {/* Description + primary CTA — bottom right, baseline-aligned with the wordmark.
+
+            The description is hidden on phones. At 12px under a moving film it
+            was below the size at which anyone actually reads a paragraph, so
+            it cost the hero its bottom third and returned nothing; the tagline
+            above already carries the claim and the CTA carries the action. It
+            stays in the markup rather than being deleted, so crawlers and
+            every viewport from `sm` up — where the type is large enough to
+            work — still get it. */}
         <div className="order-3 mt-8 flex flex-col items-start lg:col-start-2 lg:row-start-2 lg:order-none lg:mt-0 lg:self-end lg:pb-1">
-          <p className="max-w-[38ch] text-[12px] leading-[1.5] text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.6)] sm:text-[13.6px] lg:max-w-none">
+          <p className="hidden max-w-[38ch] text-[12px] leading-[1.5] text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.6)] sm:block sm:text-[13.6px] lg:max-w-none">
             A Atria alinha posicionamento, linguagem, conteúdo e busca para que o critério da sua
             atuação seja percebido antes mesmo da primeira conversa.
           </p>
-          <CtaButton className="mt-7 lg:mt-9" />
+          <CtaButton className="sm:mt-7 lg:mt-9" />
         </div>
       </div>
     </section>
