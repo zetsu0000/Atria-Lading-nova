@@ -13,9 +13,13 @@ type GhostCtaProps = {
  * doing a job.
  */
 export default function GhostCta({ label, href, className = '' }: GhostCtaProps) {
+  const external = href.startsWith('http')
+
   return (
     <a
       href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
       className={[
         'group/cta inline-flex h-12 items-center gap-3 rounded-full px-6',
         'text-[14px] whitespace-nowrap text-mineral/85',

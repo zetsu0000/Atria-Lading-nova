@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import { WHATSAPP } from '../lib/contact'
 
 type CtaButtonProps = {
   label?: string
@@ -40,15 +41,21 @@ const SIZES = {
  */
 export default function CtaButton({
   label = 'Avaliar presença',
-  href = '#comecar',
+  href = WHATSAPP.evaluate,
   size = 'default',
   className = '',
 }: CtaButtonProps) {
   const scale = SIZES[size]
+  // Anything off-origin opens in its own tab. `noreferrer` alongside
+  // `noopener` because wa.me is a redirector — no reason to hand it the
+  // referring URL on the way through.
+  const external = href.startsWith('http')
 
   return (
     <a
       href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
       className={[
         'group inline-flex shrink-0 items-center rounded-full',
         'bg-linear-to-b from-white to-[#eff0f2] text-black',

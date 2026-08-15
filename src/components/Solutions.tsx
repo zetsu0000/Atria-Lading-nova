@@ -3,6 +3,7 @@ import GhostCta from './GhostCta'
 import SolutionCard from './SolutionCard'
 import SolutionMedia from './SolutionMedia'
 import { GRAIN, SEAM_GLOW } from '../lib/grain'
+import { WHATSAPP } from '../lib/contact'
 
 /**
  * Enter transition. 20px of travel over 640ms — enough to feel deliberate,
@@ -50,7 +51,7 @@ function Editorial({ title, description, delay, className = '' }: EditorialProps
       </p>
 
       <div data-shown="false" className={RISE} style={{ transitionDelay: `${delay + 180}ms` }}>
-        <GhostCta label="Entender o processo" href="#contato" className="mt-8" />
+        <GhostCta label="Entender o processo" href={WHATSAPP.process} className="mt-8" />
       </div>
     </div>
   )
@@ -218,7 +219,7 @@ export default function Solutions() {
               aspect so it never reads as a repeat of row 1. ── */}
           <Editorial
             title="Ser encontrado pelo que diferencia você."
-            description="Organizamos conteúdo e busca para dar visibilidade aos temas que melhor representam a sua atuação."
+            description="Organizamos conteúdo e busca para dar visibilidade aos temas da dermatologia que melhor representam a sua atuação."
             delay={0}
             className="mt-20 max-w-[560px] sm:mt-28 lg:col-span-5 lg:col-start-1 lg:row-start-3 lg:mt-0 lg:justify-self-start"
           />

@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import CtaButton from './CtaButton'
+import { WHATSAPP } from '../lib/contact'
 
+/**
+ * Two kinds of destination, deliberately: the first two move within the page
+ * and land on the section they name, the third starts the conversation. The
+ * ids are the ones the sections actually declare — `#solucoes` on Abordagem
+ * and `#sobre` on Princípios — so neither can drift into a dead anchor.
+ */
 const NAV_LINKS = [
-  { label: 'Abordagem', href: '#solucoes' },
-  { label: 'Princípios', href: '#sobre' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Abordagem', href: '#solucoes', external: false },
+  { label: 'Princípios', href: '#sobre', external: false },
+  { label: 'Contato', href: WHATSAPP.general, external: true },
 ]
 
 export default function Navbar() {
@@ -39,6 +46,8 @@ export default function Navbar() {
               <li key={link.label}>
                 <a
                   href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
                   className="text-[11.5px] text-white/85 transition-colors hover:text-white"
                 >
                   {link.label}
@@ -84,6 +93,8 @@ export default function Navbar() {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
                     onClick={() => setIsMenuOpen(false)}
                     className="block py-[0.383rem] text-[13px] text-white/85 transition-colors hover:text-white"
                   >

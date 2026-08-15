@@ -2,20 +2,16 @@ import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { GRAIN, SEAM_BAND, SEAM_GLOW, SEAM_PLACEMENT } from '../lib/grain'
+import { CONTACT_EMAIL, WHATSAPP, WHATSAPP_DISPLAY } from '../lib/contact'
 
 gsap.registerPlugin(ScrollTrigger)
 
+/** Each anchor here is an id a section actually declares. */
 const PRIMARY_LINKS = [
-  { label: 'Início', href: '#top' },
-  { label: 'Abordagem', href: '#solucoes' },
-  { label: 'Princípios', href: '#sobre' },
-  { label: 'Contato', href: '#contato' },
-]
-
-const SOCIAL_LINKS = [
-  { label: 'Instagram', href: '#contato' },
-  { label: 'LinkedIn', href: '#contato' },
-  { label: 'Behance', href: '#contato' },
+  { label: 'Início', href: '#top', external: false },
+  { label: 'Abordagem', href: '#solucoes', external: false },
+  { label: 'Princípios', href: '#sobre', external: false },
+  { label: 'Contato', href: WHATSAPP.general, external: true },
 ]
 
 /**
@@ -246,7 +242,12 @@ export default function Footer() {
           <ul className="flex flex-col items-start">
             {PRIMARY_LINKS.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className={EDITORIAL_LINK}>
+                <a
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  className={EDITORIAL_LINK}
+                >
                   {link.label}
                 </a>
               </li>
@@ -254,24 +255,35 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <nav aria-label="Redes sociais">
+        {/* This column used to list Instagram, LinkedIn and Behance, all three
+            pointing at `#contato` — links that looked like profiles and went
+            nowhere. On a site whose argument is coherence, a decorative link
+            costs more than an absent one, so the column now carries the
+            channel that does exist. Restore the profiles here once they are
+            real; Behance in particular is worth reconsidering, since it reads
+            as a design portfolio and the brand is not a creative agency. */}
+        <nav aria-label="Contato direto">
           <ul className="flex flex-col items-start">
-            {SOCIAL_LINKS.map((link) => (
-              <li key={link.label}>
-                <a href={link.href} className={EDITORIAL_LINK}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            <li>
+              <a
+                href={WHATSAPP.general}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={EDITORIAL_LINK}
+              >
+                WhatsApp
+              </a>
+            </li>
           </ul>
+          <p className={`mt-3 text-[#0a0a0a]/45 ${MICRO}`}>{WHATSAPP_DISPLAY}</p>
         </nav>
 
         <address className="flex flex-col items-start not-italic">
           <a
-            href="mailto:contato@atria.com"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="text-[clamp(1.2rem,1.45vw,1.4rem)] leading-[1.4] font-normal tracking-[-0.02em] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0a0a0a]"
           >
-            contato@atria.com
+            {CONTACT_EMAIL}
           </a>
           <p className={`mt-3 text-[#0a0a0a]/45 ${MICRO}`}>
             Direção digital — Atria

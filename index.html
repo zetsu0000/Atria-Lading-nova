@@ -9,19 +9,31 @@
       content="A Atria organiza posicionamento, linguagem, conteúdo e busca para construir uma presença digital clara, coerente e reconhecível para dermatologistas."
     />
     <title>Atria | Presença digital para dermatologistas</title>
+    <link rel="canonical" href="https://atria-studios.com/" />
 
-    <!-- Compartilhamento. Sem og:image e og:url por ora: ambos exigem URL
-         absoluta, e o domínio oficial ainda não está confirmado aqui. -->
+    <!-- Compartilhamento. O domínio oficial agora está confirmado, então og:url
+         e og:image deixam de ficar em aberto. A imagem é JPEG e não WebP de
+         propósito: o preview de link do WhatsApp — o canal de contato da marca
+         — não renderiza WebP de forma confiável. -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Atria" />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content="https://atria-studios.com/" />
     <meta property="og:title" content="Atria | Presença digital para dermatologistas" />
     <meta
       property="og:description"
       content="A Atria organiza posicionamento, linguagem, conteúdo e busca para construir uma presença digital clara, coerente e reconhecível para dermatologistas."
     />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://atria-studios.com/og-atria.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta
+      property="og:image:alt"
+      content="Retrato em close sob luz difusa, atrás de um painel de vidro."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Atria | Presença digital para dermatologistas" />
+    <meta name="twitter:image" content="https://atria-studios.com/og-atria.jpg" />
     <meta
       name="twitter:description"
       content="A Atria organiza posicionamento, linguagem, conteúdo e busca para construir uma presença digital clara, coerente e reconhecível para dermatologistas."
@@ -29,15 +41,17 @@
 
     <!-- Entidade da marca. `Organization` — nunca `MedicalOrganization`,
          `MedicalClinic` ou `Physician`: a Atria não presta atendimento médico.
-         Só descreve o que está visível na página. Completar `url`, `logo` e
-         `sameAs` (perfis oficiais) quando o domínio for confirmado. -->
+         Só descreve o que está visível na página. Falta `sameAs`, que só deve
+         entrar quando existirem perfis oficiais reais para listar. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Atria",
+        "url": "https://atria-studios.com/",
         "description": "A Atria organiza posicionamento, linguagem, conteúdo e busca para construir uma presença digital clara, coerente e reconhecível para dermatologistas.",
-        "email": "contato@atria.com",
+        "email": "contato@atria-studios.com",
+        "telephone": "+5511975443446",
         "areaServed": "BR",
         "knowsAbout": [
           "Posicionamento de marca",

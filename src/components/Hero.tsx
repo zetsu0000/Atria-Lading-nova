@@ -80,10 +80,20 @@ export default function Hero() {
           'xl:grid-cols-[minmax(0,1fr)_28rem]',
         ].join(' ')}
       >
-        {/* Tagline — upper right on desktop, first line on mobile */}
-        <p className="order-1 text-[clamp(1.2rem,1.92vw,1.72rem)] leading-tight tracking-[-0.01em] text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.55)] lg:col-start-2 lg:row-start-1 lg:self-start lg:pt-[26vh]">
-          Sua autoridade não deveria parecer genérica.
-        </p>
+        {/* Tagline — upper right on desktop, first line on mobile.
+
+            This is the page's `h1`, not the wordmark below it. A brand name
+            alone carries no subject, and it was the most heavily weighted
+            heading on the page saying nothing about what the page is for. The
+            visible design is unchanged: Tailwind's preflight resets heading
+            size and weight to `inherit`, so the tag swap renders identically.
+
+            It also names the reader. "dermatologista" appeared exactly once in
+            the whole rendered page — the last line of the footer — which left
+            anyone arriving mid-scroll with no way to tell who this is for. */}
+        <h1 className="order-1 text-[clamp(1.2rem,1.92vw,1.72rem)] leading-tight tracking-[-0.01em] text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.55)] lg:col-start-2 lg:row-start-1 lg:self-start lg:pt-[26vh]">
+          Sua autoridade como dermatologista não deveria parecer genérica.
+        </h1>
 
         {/* Oversized wordmark. Sized in container-query units so it scales with
             its column rather than the viewport: "Atria" in Stack Sans Text at
@@ -101,9 +111,9 @@ export default function Hero() {
             take the full 44.5cqw, capped against the viewport height so a
             landscape phone can't blow the wordmark past the frame. */}
         <div className="@container order-2 mt-auto pt-12 sm:pt-16 lg:col-start-1 lg:row-start-2 lg:order-none lg:mt-0 lg:pt-0 lg:self-end">
-          <h1 className="-ml-[0.04em] text-[min(47cqw,30svh)] leading-[0.82] font-normal tracking-[-0.035em] text-white [text-shadow:0_4px_40px_rgb(0_0_0/0.30)] sm:text-[35.6cqw]">
+          <div className="-ml-[0.04em] text-[min(47cqw,30svh)] leading-[0.82] font-normal tracking-[-0.035em] text-white [text-shadow:0_4px_40px_rgb(0_0_0/0.30)] sm:text-[35.6cqw]">
             Atria
-          </h1>
+          </div>
         </div>
 
         {/* Description + primary CTA — bottom right, baseline-aligned with the wordmark.
