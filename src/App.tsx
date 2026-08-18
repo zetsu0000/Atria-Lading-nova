@@ -1,3 +1,4 @@
+import AmbientAudio from './components/AmbientAudio'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
@@ -18,6 +19,11 @@ export default function App() {
       <Testimonials />
 
       <Footer />
+
+      {/* Room tone for the whole page, with the control that stops it. Last in
+          the tree because it belongs to no section — it is fixed over all of
+          them. */}
+      <AmbientAudio />
     </main>
   )
 }

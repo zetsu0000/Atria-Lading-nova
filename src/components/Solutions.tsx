@@ -152,7 +152,7 @@ export default function Solutions() {
             className={`mt-6 max-w-[22ch] font-serif text-[clamp(30px,3.1vw,52px)] leading-[1.06] font-normal text-mineral italic ${RISE}`}
             style={{ transitionDelay: '90ms' }}
           >
-            Ser visto não é o mesmo que ser reconhecido.
+            O seu site hoje reflete a excelência do seu consultório?
           </h2>
         </header>
 
@@ -171,8 +171,8 @@ export default function Solutions() {
         >
           {/* ── Row 1 ── copy left, dominant card right ── */}
           <Editorial
-            title="Não comece pelo canal."
-            description="Primeiro, definimos o que deve ser reconhecido em você. Só então cada ponto de contato ganha uma função."
+            title="Elimine o abismo entre o seu trabalho e a sua tela."
+            description="Anos de especialização e um atendimento de alto padrão não combinam com um site antigo. Criamos uma vitrine moderna, digna da sua trajetória médica."
             delay={0}
             className="max-w-[560px] lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:justify-self-start"
           />
@@ -195,8 +195,8 @@ export default function Solutions() {
           {/* ── Row 2 ── card left, copy right. DOM stays copy-then-card so
               phones read Texto → Card on every row; the grid does the flip. ── */}
           <Editorial
-            title="Seu critério precisa aparecer."
-            description="Transformamos a complexidade da sua atuação em linguagem clara, autoral e coerente — sem simplificar o que torna você diferente."
+            title="Construído para transmitir autoridade instantânea."
+            description="Entendemos exatamente como você se posiciona e o que deseja transmitir. Cada imagem e texto são pensados para valorizar seu trabalho e reforçar a percepção de excelência."
             delay={120}
             className="mt-20 max-w-[560px] sm:mt-28 md:ml-auto lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:mt-0 lg:ml-0 lg:justify-self-end"
           />
@@ -218,8 +218,8 @@ export default function Solutions() {
           {/* ── Row 3 ── copy left, card right again, but narrower and wider in
               aspect so it never reads as a repeat of row 1. ── */}
           <Editorial
-            title="Ser encontrado pelo que diferencia você."
-            description="Organizamos conteúdo e busca para dar visibilidade aos temas da dermatologia que melhor representam a sua atuação."
+            title="Transforme interesse em novos agendamentos."
+            description="Quando seu trabalho é apresentado com clareza, o paciente entende seu valor e se sente mais seguro para avançar. Construímos essa experiência para transformar interesse em novos agendamentos."
             delay={0}
             className="mt-20 max-w-[560px] sm:mt-28 lg:col-span-5 lg:col-start-1 lg:row-start-3 lg:mt-0 lg:justify-self-start"
           />

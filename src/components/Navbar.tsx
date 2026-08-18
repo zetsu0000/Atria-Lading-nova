@@ -7,11 +7,11 @@ import { WHATSAPP } from '../lib/contact'
  * Two kinds of destination, deliberately: the first two move within the page
  * and land on the section they name, the third starts the conversation. The
  * ids are the ones the sections actually declare — `#solucoes` on Abordagem
- * and `#sobre` on Princípios — so neither can drift into a dead anchor.
+ * and `#sobre` on Processo — so neither can drift into a dead anchor.
  */
 const NAV_LINKS = [
   { label: 'Abordagem', href: '#solucoes', external: false },
-  { label: 'Princípios', href: '#sobre', external: false },
+  { label: 'Processo', href: '#sobre', external: false },
   { label: 'Contato', href: WHATSAPP.general, external: true },
 ]
 

@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 const PRIMARY_LINKS = [
   { label: 'Início', href: '#top', external: false },
   { label: 'Abordagem', href: '#solucoes', external: false },
-  { label: 'Princípios', href: '#sobre', external: false },
+  { label: 'Processo', href: '#sobre', external: false },
   { label: 'Contato', href: WHATSAPP.general, external: true },
 ]
 

@@ -19,28 +19,31 @@ const COBALT = '#2f6bff'
 const FIELD =
   'radial-gradient(120% 140% at 0% 0%, #2c85e5 0%, #62aaea 30%, #97cbf4 62%, #b7defb 100%)'
 
-/** Princípios editoriais da Atria: direção → clareza → encontrabilidade. */
+/**
+ * How the work actually happens, in the order the client lives it:
+ * encontro → feito à mão → entrega. Each stage is labelled by what is done,
+ * and signed by what the client gets out of it.
+ */
 const VOICES = [
   {
     quote:
-      'Uma presença forte começa quando as decisões deixam de ser isoladas.',
-    name: 'Direção',
-    role: 'O posicionamento orienta linguagem, conteúdo e encontrabilidade.',
-    company: 'Posicionamento',
+      'Antes de qualquer linha de código, entendemos quem você é e a imagem que deseja projetar.',
+    name: 'Alinhamento',
+    role: 'Total sintonia com a sua visão e autoridade.',
+    company: 'Encontro',
   },
   {
     quote:
-      'Conteúdo ganha função quando torna o seu critério compreensível.',
-    name: 'Clareza',
-    role: 'A mensagem explica o que torna a sua atuação reconhecível.',
-    company: 'Linguagem',
+      'Damos forma a uma vitrine digital que eleva a percepção de valor do seu consultório.',
+    name: 'Autoria',
+    role: 'Linhas, textos e imagens calibrados sob medida.',
+    company: 'Feito à mão',
   },
   {
-    quote:
-      'Ser encontrado importa quando a busca aproxima você dos temas que definem a sua atuação.',
-    name: 'Encontrabilidade',
-    role: 'A presença atrai interesse coerente com o seu posicionamento.',
-    company: 'Busca orgânica',
+    quote: 'Apresentamos o site finalizado em uma prévia exclusiva.',
+    name: 'Segurança',
+    role: 'Espaço para ajustes até o resultado impecável.',
+    company: 'Entrega',
   },
 ]
 
@@ -441,7 +444,7 @@ export default function Testimonials() {
                 }}
                 className="block text-[clamp(1.5rem,2.5vw,2.15rem)] leading-[1.05] tracking-[0.01em] text-[#08223d] uppercase"
               >
-                Critério
+                Como trabalhamos
               </span>
             </span>
             <span className="block overflow-hidden pb-[0.08em]">
@@ -451,7 +454,7 @@ export default function Testimonials() {
                 }}
                 className="block font-serif text-[clamp(2.4rem,4.4vw,4rem)] leading-[1.02] font-normal text-[#08223d] italic"
               >
-                antes de produção
+                de perto, com você
               </span>
             </span>
           </h2>
